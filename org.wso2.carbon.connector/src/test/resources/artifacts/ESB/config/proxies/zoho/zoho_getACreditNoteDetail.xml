@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getACreditNoteDetail"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="creditnoteId" expression="json-eval($.creditnoteId)"/>
+            <property name="print" expression="json-eval($.print)"/>
+            <property name="accept" expression="json-eval($.accept)"/>
+
+            <zoho.getACreditNoteDetail>
+                <authToken>{$ctx:authToken}</authToken>
+                <creditnoteId>{$ctx:creditnoteId}</creditnoteId>
+                <print>{$ctx:print}</print>
+                <accept>{$ctx:accept}</accept>
+
+            </zoho.getACreditNoteDetail>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

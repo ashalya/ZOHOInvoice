@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Estimates" type="synapse/template">
+    <subComponents>
+        <component name="getTheListOfEstimates">
+            <file>getTheListOfEstimates.xml</file>
+            <description>List Estimates</description>
+        </component>
+        <component name="getDetailOfAnEstimate">
+            <file>getDetailOfAnEstimate.xml</file>
+            <description>Get Estimates </description>
+        </component>
+        <component name="deleteAnExistingEstimate">
+            <file>deleteAnExistingEstimate.xml</file>
+            <description>Delete Estimate </description>
+        </component>
+        <component name="emailTheEstimate">
+            <file>emailTheEstimate.xml</file>
+            <description>Email Estimate </description>
+        </component>
+        <component name="getDetailOfAnEstimateEmailContent">
+            <file>getDetailOfAnEstimateEmailContent.xml</file>
+            <description>Get Estimate Email Content </description>
+        </component>
+        <component name="UpdateBillingAddress">
+            <file>UpdateBillingAddress.xml</file>
+            <description>Update Billing Address</description>
+        </component>
+        <component name="UpdateShippingAddress">
+            <file>UpdateShippingAddress.xml</file>
+            <description>Update Shipping Address</description>
+        </component>
+        <component name="createANewEstimate">
+            <file>createANewEstimate.xml</file>
+            <description>Create Estimate</description>
+        </component>
+        <component name="updateAnExistingEstimate">
+            <file>updateAnExistingEstimate.xml</file>
+            <description>update An Existing Estimate</description>
+        </component>
+    </subComponents>
+</component>

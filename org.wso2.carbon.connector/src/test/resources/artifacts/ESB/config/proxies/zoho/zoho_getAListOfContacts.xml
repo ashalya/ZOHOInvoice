@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getAListOfContacts"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="contactName" expression="json-eval($.contactName)"/>
+            <property name="companyName" expression="json-eval($.companyName)"/>
+            <property name="firstName" expression="json-eval($.firstName)"/>
+            <property name="lastName" expression="json-eval($.lastName)"/>
+            <property name="address" expression="json-eval($.address)"/>
+            <property name="email" expression="json-eval($.email)"/>
+            <property name="phone" expression="json-eval($.phone)"/>
+            <property name="filterBy" expression="json-eval($.filterBy)"/>
+            <property name="searchText" expression="json-eval($.searchText)"/>
+            <property name="sortColumn" expression="json-eval($.sortColumn)"/>
+            <zoho.getAListOfContacts>
+                <authToken>{$ctx:authToken}</authToken>
+                <contactName>{$ctx:contactName}</contactName>
+                <companyName>{$ctx:companyName}</companyName>
+                <firstName>{$ctx:firstName}</firstName>
+                <lastName>{$ctx:lastName}</lastName>
+                <address>{$ctx:address}</address>
+                <email>{$ctx:email}</email>
+                <phone>{$ctx:phone}</phone>
+                <filterBy>{$ctx:filterBy}</filterBy>
+                <searchText>{$ctx:searchText}</searchText>
+                <sortColumn>{$ctx:sortColumn}</sortColumn>
+            </zoho.getAListOfContacts>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

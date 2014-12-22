@@ -1,0 +1,181 @@
+<template name="createANewEstimate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="authToken" description="API key" />
+    <parameter name="customerId"  />
+    <parameter name="contactPersons"  />
+    <parameter name="lineItems"  />
+    <parameter name="templateId"  />
+    <parameter name="estimate_number"  />
+    <parameter name="date"  />
+    <parameter name="expiryDate"  />
+    <parameter name="exchangeRate"  />
+    <parameter name="discount"  />
+    <parameter name="isDiscountBeforeTax"  />
+    <parameter name="discountType"  />
+    <parameter name="salespersonName"  />
+    <parameter name="shippingCharge"  />
+    <parameter name="adjustment"  />
+    <parameter name="adjustmentDescription"  />
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.customerId" expression="$func:customerId" />
+        <property name="uri.var.lineItems" expression="$func:lineItems" />
+        <property name="uri.var.contactPersons" expression="$func:contactPersons" />
+        <property name="uri.var.templateId" expression="$func:templateId" />
+        <property name="uri.var.estimate_number" expression="$func:estimate_number" />
+        <property name="uri.var.date" expression="$func:date" />
+        <property name="uri.var.expiryDate" expression="$func:expiryDate" />
+        <property name="uri.var.exchangeRate" expression="$func:exchangeRate" />
+        <property name="uri.var.discount" expression="$func:discount" />
+        <property name="uri.var.isDiscountBeforeTax" expression="$func:isDiscountBeforeTax" />
+        <property name="uri.var.discountType" expression="$func:discountType" />
+        <property name="uri.var.salespersonName" expression="$func:salespersonName" />
+        <property name="uri.var.shippingCharge" expression="$func:shippingCharge" />
+        <property name="uri.var.adjustment" expression="$func:adjustment" />
+        <property name="uri.var.adjustmentDescription" expression="$func:adjustmentDescription" />
+        <property name="zohoParameters" value=""/>
+        <filter
+                xpath="get-property('uri.var.contactPersons') = '' or  not(string(get-property('uri.var.contactPersons')))" >
+            <then>
+                <property name="uri.var.contactPersons" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;contact_persons&quot;:', get-property('uri.var.contactPersons'))"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.templateId') = '' or  not(string(get-property('uri.var.templateId')))" >
+            <then>
+                <property name="uri.var.templateId" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;template_id&quot;:&quot;', get-property('uri.var.templateId'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.estimate_number') = '' or  not(string(get-property('uri.var.estimate_number')))" >
+            <then>
+                <property name="uri.var.estimate_number" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;estimate_number&quot;:&quot;', get-property('uri.var.estimate_number'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.date') = '' or  not(string(get-property('uri.var.date')))" >
+            <then>
+                <property name="uri.var.date" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;date&quot;:&quot;', get-property('uri.var.date'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.expiryDate') = '' or  not(string(get-property('uri.var.expiryDate')))" >
+            <then>
+                <property name="uri.var.expiryDate" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;expiry_date&quot;:&quot;', get-property('uri.var.expiryDate'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.exchangeRate') = '' or  not(string(get-property('uri.var.exchangeRate')))" >
+            <then>
+                <property name="uri.var.exchangeRate" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;exchange_rate&quot;:&quot;', get-property('uri.var.exchangeRate'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.discount') = '' or  not(string(get-property('uri.var.discount')))" >
+            <then>
+                <property name="uri.var.discount" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;discount&quot;:&quot;', get-property('uri.var.discount'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.isDiscountBeforeTax') = '' or  not(string(get-property('uri.var.isDiscountBeforeTax')))" >
+            <then>
+                <property name="uri.var.isDiscountBeforeTax" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;is_discount_before_tax&quot;:&quot;', get-property('uri.var.isDiscountBeforeTax'),'&quot;')"/>
+            </else>
+        </filter>
+
+        <filter
+                xpath="get-property('uri.var.discountType') = '' or  not(string(get-property('uri.var.discountType')))" >
+            <then>
+                <property name="uri.var.discountType" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;discount_type&quot;:&quot;', get-property('uri.var.discountType'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.salespersonName') = '' or  not(string(get-property('uri.var.salespersonName')))" >
+            <then>
+                <property name="uri.var.salespersonName" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;salesperson_name&quot;:&quot;', get-property('uri.var.salespersonName'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.shippingCharge') = '' or  not(string(get-property('uri.var.shippingCharge')))" >
+            <then>
+                <property name="uri.var.shippingCharge" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;shipping_charge&quot;:&quot;', get-property('uri.var.shippingCharge'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.adjustment') = '' or  not(string(get-property('uri.var.adjustment')))" >
+            <then>
+                <property name="uri.var.adjustment" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;adjustment&quot;:&quot;', get-property('uri.var.adjustment'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.adjustmentDescription') = '' or  not(string(get-property('uri.var.adjustmentDescription')))" >
+            <then>
+                <property name="uri.var.adjustmentDescription" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;adjustment_description&quot;:&quot;', get-property('uri.var.adjustmentDescription'),'&quot;')"/>
+            </else>
+        </filter>
+        <property name="uri.var.parameters" expression="get-property('zohoParameters')" />
+        <call>
+            <endpoint>
+                <http method="post"
+                      uri-template="https://invoice.zoho.com/api/v3/estimates?authtoken={uri.var.authToken}&amp;JSONString={&quot;customer_id&quot;:&quot;{uri.var.customerId}&quot;,&quot;line_items&quot;:{uri.var.lineItems}{uri.var.parameters}}" />
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

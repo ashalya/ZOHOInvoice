@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_ListCreditsApplied"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authtoken" expression="json-eval($.authtoken)"/>
+            <property name="invoice_id" expression="json-eval($.invoice_id)"/>
+
+            <zoho.ListCreditsApplied>
+                <authtoken>{$ctx:authtoken}</authtoken>
+                <invoice_id>{$ctx:invoice_id}</invoice_id>
+            </zoho.ListCreditsApplied>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getListOfRecurringInvoices"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="recurrenceName" expression="json-eval($.recurrenceName)"/>
+            <property name="itemName" expression="json-eval($.itemName)"/>
+            <property name="itemDescription" expression="json-eval($.itemDescription)"/>
+            <property name="customerName" expression="json-eval($.customerName)"/>
+            <property name="lineItemId" expression="json-eval($.lineItemId)"/>
+            <property name="itemId" expression="json-eval($.item_id)"/>
+            <property name="taxId" expression="json-eval($.taxId)"/>
+            <property name="notes" expression="json-eval($.notes)"/>
+            <property name="startDate" expression="json-eval($.startDate)"/>
+            <property name="endDate" expression="json-eval($.endDate)"/>
+            <property name="customerId" expression="json-eval($.customerId)"/>
+            <property name="status" expression="json-eval($.status)"/>
+            <property name="filterBy" expression="json-eval($.filterBy)"/>
+            <property name="searchText" expression="json-eval($.searchText)"/>
+            <property name="sortColumn" expression="json-eval($.sortColumn)"/>
+
+            <zoho.getListOfRecurringInvoices>
+                <authToken>{$ctx:authToken}</authToken>
+                <recurrenceName>{$ctx:recurrenceName}</recurrenceName>
+                <itemName>{$ctx:itemName}</itemName>
+                <itemDescription>{$ctx:itemDescription}</itemDescription>
+                <customerName>{$ctx:customerName}</customerName>
+                <lineItemId>{$ctx:lineItemId}</lineItemId>
+                <item_id>{$ctx:item_id}</item_id>
+                <taxId>{$ctx:taxId}</taxId>
+                <notes>{$ctx:notes}</notes>
+                <startDate>{$ctx:startDate}</startDate>
+                <endDate>{$ctx:endDate}</endDate>
+                <customerId>{$ctx:customerId}</customerId>
+                <status>{$ctx:status}</status>
+                <filterBy>{$ctx:filterBy}</filterBy>
+                <searchText>{$ctx:searchText}</searchText>
+                <sortColumn>{$ctx:sortColumn}</sortColumn>
+
+            </zoho.getListOfRecurringInvoices>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_deleteAnExistingRecurringInvoice"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="recurringInvoiceId" expression="json-eval($.recurringInvoiceId)"/>
+
+            <zoho.deleteAnExistingRecurringInvoice>
+                <authToken>{$ctx:authToken}</authToken>
+                <recurringInvoiceId>{$ctx:recurringInvoiceId}</recurringInvoiceId>
+            </zoho.deleteAnExistingRecurringInvoice>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

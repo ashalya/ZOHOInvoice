@@ -1,0 +1,35 @@
+<template name="getDetailOfAnEstimateEmailContent" xmlns="http://ws.apache.org/ns/synapse">
+    <!-- Required Parameters -->
+    <parameter name="authToken" description="API key" />
+    <parameter name="estimateId"  />
+    <parameter name="emailTemplateId"  />
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.estimateId" expression="$func:estimateId" />
+        <property name="uri.var.emailTemplateId" expression="$func:emailTemplateId" />
+        <property name="zohoParameters" value=""/>
+        <filter
+                xpath="get-property('uri.var.emailTemplateId') = '' or  not(string(get-property('uri.var.emailTemplateId')))" >
+            <then>
+                <property name="uri.var.emailTemplateId" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               '&amp;email_template_id=', get-property('uri.var.emailTemplateId'))"/>
+            </else>
+        </filter>
+        <property name="uri.var.parameters" expression="get-property('zohoParameters')" />
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://invoice.zoho.com/api/v3/estimates/{uri.var.estimateId}/email?authtoken={uri.var.authToken}&amp;{uri.var.parameters}&amp;accept=json" />
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

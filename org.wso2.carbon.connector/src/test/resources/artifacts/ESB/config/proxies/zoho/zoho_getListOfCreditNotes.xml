@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getListOfCreditNotes"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="creditNoteNumber" expression="json-eval($.creditNoteNumber)"/>
+            <property name="date" expression="json-eval($.date)"/>
+            <property name="status" expression="json-eval($.status)"/>
+            <property name="total" expression="json-eval($.total)"/>
+            <property name="referenceNumber" expression="json-eval($.referenceNumber)"/>
+            <property name="customerName" expression="json-eval($.customerName)"/>
+            <property name="itemName" expression="json-eval($.itemName)"/>
+            <property name="itemDescription" expression="json-eval($.itemDescription)"/>
+            <property name="customerId" expression="json-eval($.customerId)"/>
+            <property name="lineItemId" expression="json-eval($.lineItemId)"/>
+            <property name="itemId" expression="json-eval($.itemId)"/>
+            <property name="taxId" expression="json-eval($.taxId)"/>
+            <property name="filterBy" expression="json-eval($.filterBy)"/>
+            <property name="searchText" expression="json-eval($.searchText)"/>
+
+
+            <zoho.getListOfCreditNotes>
+                <authToken>{$ctx:authToken}</authToken>
+                <creditNoteNumber>{$ctx:creditNoteNumber}</creditNoteNumber>
+                <date>{$ctx:date}</date>
+                <status>{$ctx:status}</status>
+                <total>{$ctx:total}</total>
+                <referenceNumber>{$ctx:referenceNumber}</referenceNumber>
+                <customerName>{$ctx:customerName}</customerName>
+                <itemName>{$ctx:itemName}</itemName>
+                <itemDescription>{$ctx:itemDescription}</itemDescription>
+                <customerId>{$ctx:customerId}</customerId>
+                <lineItemId>{$ctx:lineItemId}</lineItemId>
+                <itemId>{$ctx:itemId}</itemId>
+                <taxId>{$ctx:taxId}</taxId>
+                <filterBy>{$ctx:filterBy}</filterBy>
+                <searchText>{$ctx:searchText}</searchText>
+
+            </zoho.getListOfCreditNotes>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

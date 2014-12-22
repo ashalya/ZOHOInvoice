@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Contacts" type="synapse/template">
+    <subComponents>
+        <component name="getAListOfContacts">
+            <file>getAListOfContacts.xml</file>
+            <description>List Contacts</description>
+        </component>
+        <component name="getAContactDetail">
+            <file>getAContactDetail.xml</file>
+            <description>get Contacts</description>
+        </component>
+        <component name="createAContact">
+            <file>createAContact.xml</file>
+            <description>createAContact</description>
+        </component>
+        <component name="deleteExistingContact">
+        <file>deleteExistingContact.xml</file>
+            <description>deleteExistingContact</description>
+        </component>
+        <component name="updateExistingContact">
+            <file>updateExistingContact.xml</file>
+            <description>Update Contact</description>
+        </component>
+        <component name="getTheListOfComments">
+            <file>getTheListOfComments.xml</file>
+            <description>List Comments</description>
+        </component>
+        <component name="getListOfRefunds">
+            <file>getListOfRefunds.xml</file>
+            <description>List Refunds</description>
+        </component>
+        <component name="emailTheStatement">
+            <file>emailTheStatement.xml</file>
+            <description>Email Statement</description>
+        </component>
+    </subComponents>
+</component>

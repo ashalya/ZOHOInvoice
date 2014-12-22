@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Items" type="synapse/template">
+    <subComponents>
+        <component name="getTheListOfItems">
+            <file>getTheListOfItems.xml</file>
+            <description>List Items</description>
+        </component>
+
+        <component name="getADetailOfAnItem">
+            <file>getADetailOfAnItem.xml</file>
+            <description>Get Items</description>
+        </component>
+        <component name="createANewItem">
+            <file>createANewItem.xml</file>
+            <description>Create Items</description>
+        </component>
+
+        <component name="updateAnExistingItem">
+            <file>updateAnExistingItem.xml</file>
+            <description>Update Item</description>
+        </component>
+
+        <component name="deleteAnExistingItem">
+            <file>deleteAnExistingItem.xml</file>
+            <description>Delete Item</description>
+        </component>
+    </subComponents>
+</component>

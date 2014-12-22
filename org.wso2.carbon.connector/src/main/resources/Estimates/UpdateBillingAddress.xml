@@ -1,0 +1,33 @@
+<template name="UpdateBillingAddress" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!-- Required Parameters -->
+    <parameter name="authtoken" description="API key" />
+    <parameter name="estimate_id"  />
+    <parameter name="address"  />
+
+
+
+    <sequence>
+        <property name="uri.var.authtoken" expression="$func:authtoken" />
+        <property name="uri.var.estimate_id" expression="$func:estimate_id" />
+        <property name="uri.var.address" expression="$func:address" />
+
+
+
+        <call>
+
+            <endpoint>
+
+                <http method="put"
+                      uri-template="https://invoice.zoho.com/api/v3/estimates/{uri.var.estimate_id}/address/billing?authtoken={uri.var.authtoken}&amp;JSONString={&quot;address&quot;:&quot;{uri.var.address}&quot;}" />
+
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

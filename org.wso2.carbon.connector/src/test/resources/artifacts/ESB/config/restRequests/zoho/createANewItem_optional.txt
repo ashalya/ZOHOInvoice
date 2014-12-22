@@ -1,0 +1,7 @@
+{
+"authToken":"c1f8014366dd6ffd2691f9671f70de50",
+"name":"Flora",
+"description":"Flour",
+"rate":"200.00",
+"taxId":""
+}

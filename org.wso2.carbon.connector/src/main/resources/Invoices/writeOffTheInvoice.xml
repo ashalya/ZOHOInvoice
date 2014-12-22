@@ -1,0 +1,21 @@
+<template name="writeOffTheInvoice" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="authToken" description="API key" />
+    <parameter name="invoiceId"  />
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.invoiceId" expression="$func:invoiceId" />
+        <call>
+            <endpoint>
+                <http method="post"
+                      uri-template="https://invoice.zoho.com/api/v3/invoices/{uri.var.invoiceId}/writeoff?authtoken={uri.var.authToken}" />
+            </endpoint>
+            <property name="Accept" value="*/*" scope="transport"/>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

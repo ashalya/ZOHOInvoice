@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="CustomerPayments" type="synapse/template">
+    <subComponents>
+        <component name="getlistOfCustomerPayments">
+            <file>getlistOfCustomerPayments.xml</file>
+            <description>List Customer Payments</description>
+        </component>
+
+        <component name="getDetailOfACustomerPayments">
+            <file>getDetailOfACustomerPayments.xml</file>
+            <description> Get Customer Payments </description>
+        </component>
+
+        <component name="createANewCustomerPayment">
+            <file>createANewCustomerPayment.xml</file>
+            <description>  Create Customer Payments  </description>
+        </component>
+
+        <component name="deleteAnExisistingCustomerPayment">
+            <file>deleteAnExisistingCustomerPayment.xml</file>
+            <description>  Delete Customer Payments</description>
+        </component>
+    </subComponents>
+</component>

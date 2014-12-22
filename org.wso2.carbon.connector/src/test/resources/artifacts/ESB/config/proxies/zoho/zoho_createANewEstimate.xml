@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_createANewEstimate"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="customerId" expression="json-eval($.customerId)"/>
+            <property name="lineItems" expression="json-eval($.lineItems)"/>
+
+            <property name="contactPersons" expression="json-eval($.contactPersons)"/>
+            <property name="templateId" expression="json-eval($.templateId)"/>
+            <property name="estimate_number" expression="json-eval($.estimate_number)"/>
+            <property name="date" expression="json-eval($.date)"/>
+            <property name="expiryDate" expression="json-eval($.expiryDate)"/>
+            <property name="exchangeRate" expression="json-eval($.exchangeRate)"/>
+            <property name="discount" expression="json-eval($.discount)"/>
+            <property name="isDiscountBeforeTax" expression="json-eval($.isDiscountBeforeTax)"/>
+            <property name="discountType" expression="json-eval($.discountType)"/>
+            <property name="salespersonName" expression="json-eval($.salespersonName)"/>
+            <property name="custom_fields" expression="json-eval($.custom_fields)"/>
+            <property name="shippingCharge" expression="json-eval($.shippingCharge)"/>
+            <property name="adjustment" expression="json-eval($.adjustment)"/>
+            <property name="adjustmentDescription" expression="json-eval($.adjustmentDescription)"/>
+
+
+            <zoho.createANewEstimate>
+                <authToken>{$ctx:authToken}</authToken>
+                <customerId>{$ctx:customerId}</customerId>
+                <lineItems>{$ctx:lineItems}</lineItems>
+                <contactPersons>{$ctx:contactPersons}</contactPersons>
+                <templateId>{$ctx:templateId}</templateId>
+                <estimate_number>{$ctx:estimate_number}</estimate_number>
+                <date>{$ctx:date}</date>
+                <expiryDate>{$ctx:expiryDate}</expiryDate>
+                <exchangeRate>{$ctx:exchangeRate}</exchangeRate>
+                <discount>{$ctx:discount}</discount>
+                <isDiscountBeforeTax>{$ctx:isDiscountBeforeTax}</isDiscountBeforeTax>
+                <discountType>{$ctx:discountType}</discountType>
+                <salespersonName>{$ctx:salespersonName}</salespersonName>
+                <custom_fields>{$ctx:custom_fields}</custom_fields>
+                <shippingCharge>{$ctx:shippingCharge}</shippingCharge>
+                <adjustment>{$ctx:adjustment}</adjustment>
+                <adjustmentDescription>{$ctx:adjustmentDescription}</adjustmentDescription>
+
+
+
+            </zoho.createANewEstimate>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

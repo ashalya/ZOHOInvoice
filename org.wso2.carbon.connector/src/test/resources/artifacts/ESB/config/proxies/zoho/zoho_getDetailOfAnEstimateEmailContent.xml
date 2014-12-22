@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getDetailOfAnEstimateEmailContent"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="estimateId" expression="json-eval($.estimateId)"/>
+            <property name="emailTemplateId" expression="json-eval($.emailTemplateId)"/>
+            <zoho.getDetailOfAnEstimateEmailContent>
+                <authToken>{$ctx:authToken}</authToken>
+                <estimateId>{$ctx:estimateId}</estimateId>
+                <emailTemplateId>{$ctx:emailTemplateId}</emailTemplateId>
+            </zoho.getDetailOfAnEstimateEmailContent>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

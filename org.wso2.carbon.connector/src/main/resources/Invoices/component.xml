@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Invoices" type="synapse/template">
+    <subComponents>
+        <component name="getTheListOfInvoices">
+            <file>getTheListOfInvoices.xml</file>
+            <description>List Invoices</description>
+        </component>
+        <component name="getDetailOfAnInvoice">
+            <file>getDetailOfAnInvoice.xml</file>
+            <description>Get Invoice</description>
+        </component>
+        <component name="deleteAnExistingInvoice">
+            <file>deleteAnExistingInvoice.xml</file>
+            <description>Delete Invoice</description>
+        </component>
+        <component name="createANewInvoice">
+            <file>createANewInvoice.xml</file>
+            <description>Create Invoice</description>
+        </component>
+        <component name="emailTheInvoice">
+            <file>emailTheInvoice.xml</file>
+            <description>Email Invoice</description>
+        </component>
+        <component name="getContentOfAnInvoiceEmail">
+            <file>getContentOfAnInvoiceEmail.xml</file>
+            <description>Get Invoice Email Content</description>
+        </component>
+        <component name="writeOffTheInvoice">
+            <file>writeOffTheInvoice.xml</file>
+            <description>Write Off Invoice</description>
+        </component>
+        <component name="UpdateInvoiceBillingAddress">
+            <file>UpdateInvoiceBillingAddress.xml</file>
+            <description>Update Billing Address</description>
+        </component>
+        <component name="UpdateInvoiceshippingAddress">
+            <file>UpdateInvoiceshippingAddress.xml</file>
+            <description>Update Invoice shipping Address</description>
+        </component>
+
+        <component name="updateExistingInvoice">
+            <file>updateExistingInvoice.xml</file>
+            <description>Update Invoice</description>
+        </component>
+        <component name="cancelTheWriteOffAnInvoice">
+            <file>cancelTheWriteOffAnInvoice.xml</file>
+            <description>cancelTheWriteOffAnInvoice</description>
+        </component>
+        <component name="getlistOfInvoiceTemplates">
+            <file>getlistOfInvoiceTemplates.xml</file>
+            <description>List The Invoice Templates</description>
+        </component>
+    </subComponents>
+</component>

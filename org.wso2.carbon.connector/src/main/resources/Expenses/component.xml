@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Expenses" type="synapse/template">
+    <subComponents>
+        <component name="getTheListOfExpenses">
+            <file>getTheListOfExpenses.xml</file>
+            <description>List Expenses</description>
+        </component>
+        <component name="createANewExpense">
+            <file>createANewExpense.xml</file>
+            <description>Create Expenses</description>
+        </component>
+
+        <component name="getDetailOfAnExpense">
+            <file>getDetailOfAnExpense.xml</file>
+            <description>Get Expenses</description>
+        </component>
+
+        <component name="UpdateExistingExpenses">
+            <file>UpdateExistingExpenses.xml</file>
+            <description>Update Expenses</description>
+        </component>
+
+        <component name="deleteAnExistingExpense">
+            <file>deleteAnExistingExpense.xml</file>
+            <description>Delete Expenses</description>
+        </component>
+
+
+        <component name="getListOfExpenseCommentsAndHistory">
+            <file>getListOfExpenseCommentsAndHistory.xml</file>
+            <description>getList Of Expense Comments And History </description>
+        </component>
+
+    </subComponents>
+
+
+</component>

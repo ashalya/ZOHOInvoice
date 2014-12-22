@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="CreditNotes" type="synapse/template">
+    <subComponents>
+        <component name="getListOfCreditNotes">
+            <file>getListOfCreditNotes.xml</file>
+            <description>List CreditNotes</description>
+        </component>
+
+
+        <component name="getACreditNoteDetail">
+            <file>getACreditNoteDetail.xml</file>
+            <description>Get Credit Notes</description>
+        </component>
+
+        <component name="createACreditNote">
+            <file>createACreditNote.xml</file>
+            <description>CreateCreditNotes</description>
+        </component>
+
+        <component name="updateExistingCreditNote">
+            <file>updateExistingCreditNote.xml</file>
+            <description>Update Credit Notes</description>
+        </component>
+
+
+        <component name="deleteExisistingCreditNote">
+            <file>deleteExisistingCreditNote.xml</file>
+            <description>Delete Credit Notes</description>
+        </component>
+
+
+
+</subComponents>
+</component>

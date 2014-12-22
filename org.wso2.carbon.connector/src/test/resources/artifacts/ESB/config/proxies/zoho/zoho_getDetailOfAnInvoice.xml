@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getDetailOfAnInvoice"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="print" expression="json-eval($.print)"/>
+            <property name="invoiceId" expression="json-eval($.invoiceId)"/>
+            <property name="accept" expression="json-eval($.accept)"/>
+
+            <zoho.getDetailOfAnInvoice>
+                <authToken>{$ctx:authToken}</authToken>
+                <invoiceId>{$ctx:invoiceId}</invoiceId>
+                <print>{$ctx:print}</print>
+                <accept>{$ctx:accept}</accept>
+
+            </zoho.getDetailOfAnInvoice>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

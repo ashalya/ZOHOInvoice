@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="RecurringInvoices" type="synapse/template">
+    <subComponents>
+        <component name="getListOfRecurringInvoices">
+            <file>getListOfRecurringInvoices.xml</file>
+            <description>get List Of Recurring Invoices</description>
+        </component>
+
+        <component name="getADetailOfARecurringInvoice">
+            <file>getADetailOfARecurringInvoice.xml</file>
+            <description>getADetailOfARecurringInvoice</description>
+        </component>
+
+        <component name="createANewRecurringInvoice">
+            <file>createANewRecurringInvoice.xml</file>
+            <description>create A New RecurringInvoice</description>
+        </component>
+
+        <component name="updateExistingRecurringInvoice">
+            <file>updateExistingRecurringInvoice.xml</file>
+            <description>Update RecurringInvoices</description>
+        </component>
+        <component name="deleteAnExistingRecurringInvoice">
+            <file>deleteAnExistingRecurringInvoice.xml</file>
+            <description>Delete RecurringInvoices </description>
+        </component>
+
+
+    </subComponents>
+</component>

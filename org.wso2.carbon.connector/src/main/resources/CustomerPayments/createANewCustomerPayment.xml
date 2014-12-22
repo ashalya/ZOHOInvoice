@@ -1,0 +1,161 @@
+<template name="createANewCustomerPayment" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!-- Required Parameters -->
+    <parameter name="authToken" description="API key" />
+    <parameter name="amount"  />
+    <parameter name="customerId"  />
+    <parameter name="date"  />
+    <parameter name="description"  />
+    <parameter name="invoices"  />
+    <parameter name="paymentMode"  />
+    <parameter name="referenceNumber"  />
+    <parameter name="exchangeRate"  />
+    <parameter name="bankCharges"  />
+    <parameter name="contactPersons"  />
+
+
+
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.amount" expression="$func:amount" />
+        <property name="uri.var.customerId" expression="$func:customerId" />
+        <property name="uri.var.date" expression="$func:date" />
+        <property name="uri.var.description" expression="$func:description" />
+        <property name="uri.var.invoices" expression="$func:invoices" />
+        <property name="uri.var.paymentMode" expression="$func:paymentMode" />
+        <property name="uri.var.referenceNumber" expression="$func:referenceNumber" />
+        <property name="uri.var.exchangeRate" expression="$func:exchangeRate" />
+        <property name="uri.var.bankCharges" expression="$func:bankCharges" />
+        <property name="uri.var.contactPersons" expression="$func:contactPersons" />
+
+        <property name="zohoParameters" value=""/>
+
+
+
+
+
+        <filter
+                xpath="get-property('uri.var.description') = '' or  not(string(get-property('uri.var.description')))" >
+            <then>
+                <property name="uri.var.description" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;description&quot;:', get-property('uri.var.description'))"/>
+            </else>
+        </filter>
+
+        <filter
+                xpath="get-property('uri.var.invoices') = '' or  not(string(get-property('uri.var.invoices')))" >
+            <then>
+                <property name="uri.var.invoices" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;invoices&quot;:', get-property('uri.var.invoices'))"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.paymentMode') = '' or  not(string(get-property('uri.var.paymentMode')))" >
+            <then>
+                <property name="uri.var.paymentMode" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;payment_mode&quot;:&quot;', get-property('uri.var.paymentMode'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.referenceNumber') = '' or  not(string(get-property('uri.var.referenceNumber')))" >
+            <then>
+                <property name="uri.var.referenceNumber" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;reference_number&quot;:&quot;', get-property('uri.var.referenceNumber'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.exchangeRate') = '' or  not(string(get-property('uri.var.exchangeRate')))" >
+            <then>
+                <property name="uri.var.exchangeRate" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;exchange_rate&quot;:&quot;', get-property('uri.var.exchangeRate'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.bankCharges') = '' or  not(string(get-property('uri.var.bankCharges')))" >
+            <then>
+                <property name="uri.var.bankCharges" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;bank_charges&quot;:&quot;', get-property('uri.var.bankCharges'),'&quot;')"/>
+            </else>
+        </filter>
+        <filter
+                xpath="get-property('uri.var.contactPersons') = '' or  not(string(get-property('uri.var.contactPersons')))" >
+            <then>
+                <property name="uri.var.contactPersons" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;contact_persons&quot;:&quot;', get-property('uri.var.contactPersons'),'&quot;')"/>
+            </else>
+        </filter>
+
+        <filter
+                xpath="get-property('uri.var.description') = '' or  not(string(get-property('uri.var.description')))" >
+            <then>
+                <property name="uri.var.description" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;description&quot;:&quot;', get-property('uri.var.description'),'&quot;')"/>
+            </else>
+        </filter>
+
+
+        <!--script language="js"><![CDATA[
+
+                    var query = mc.getProperty('uri.var.description');
+					var encodedQuery = encodeURIComponent(query);
+					mc.setProperty('uri.var.sQuery', encodedQuery);
+
+        		 ]]>
+
+        </script-->
+
+
+        <property name="requestMethod" expression="get-property('sQuery')"/>
+
+        <property name="uri.var.parameters" expression="get-property('zohoParameters')" />
+
+
+
+        <!--property name="POST_TO_URI" value="true" scope="axis2" type="STRING"></property-->
+        <!--property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"></property>
+        <property name="FORCE_HTTP_1.0" value="true" scope="axis2"></property>
+        <property name="DISABLE_CHUNKING" value="true" scope="axis2"></property-->
+
+
+
+
+        <call>
+
+            <endpoint>
+
+                <http method="post"
+                      uri-template="https://invoice.zoho.com/api/v3/customerpayments?authtoken={uri.var.authToken}&amp;JSONString={&quot;customer_id&quot;:&quot;{uri.var.customerId}&quot;,&quot;date&quot;:&quot;{uri.var.date}&quot;,&quot;amount&quot;:&quot;{uri.var.amount}&quot;{uri.var.parameters}} "/>
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

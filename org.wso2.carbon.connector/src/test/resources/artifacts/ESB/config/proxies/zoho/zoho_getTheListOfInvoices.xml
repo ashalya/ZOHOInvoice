@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_getTheListOfInvoices"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="invoiceNumber" expression="json-eval($.invoiceNumber)"/>
+            <property name="itemName" expression="json-eval($.itemName)"/>
+            <property name="itemId" expression="json-eval($.itemId)"/>
+            <property name="itemDescription" expression="json-eval($.itemDescription)"/>
+            <property name="referenceNumber" expression="json-eval($.referenceNumber)"/>
+            <property name="customerName" expression="json-eval($.customerName)"/>
+            <property name="recurringInvoiceId" expression="json-eval($.recurringInvoiceId)"/>
+            <property name="email" expression="json-eval($.email)"/>
+            <property name="total" expression="json-eval($.total)"/>
+            <property name="balance" expression="json-eval($.balance)"/>
+            <property name="customField" expression="json-eval($.customField)"/>
+            <property name="date" expression="json-eval($.date)"/>
+            <property name="dueDate" expression="json-eval($.dueDate)"/>
+            <property name="status" expression="json-eval($.status)"/>
+            <property name="customerId" expression="json-eval($.customerId)"/>
+            <property name="filterBy" expression="json-eval($.filterBy)"/>
+            <property name="searchText" expression="json-eval($.searchText)"/>
+            <property name="sortColumn" expression="json-eval($.sortColumn)"/>
+            <zoho.getTheListOfInvoices>
+                <authToken>{$ctx:authToken}</authToken>
+                <invoiceNumber>{$ctx:invoiceNumber}</invoiceNumber>
+                <itemName>{$ctx:itemName}</itemName>
+                <itemId>{$ctx:itemId}</itemId>
+                <itemDescription>{$ctx:itemDescription}</itemDescription>
+                <referenceNumber>{$ctx:referenceNumber}</referenceNumber>
+                <customerName>{$ctx:customerName}</customerName>
+                <recurringInvoiceId>{$ctx:recurringInvoiceId}</recurringInvoiceId>
+                <email>{$ctx:email}</email>
+                <total>{$ctx:total}</total>
+                <balance>{$ctx:balance}</balance>
+                <date>{$ctx:date}</date>
+                <dueDate>{$ctx:dueDate}</dueDate>
+                <status>{$ctx:status}</status>
+                <customerId>{$ctx:customerId}</customerId>
+                <filterBy>{$ctx:filterBy}</filterBy>
+                <searchText>{$ctx:searchText}</searchText>
+                <sortColumn>{$ctx:sortColumn}</sortColumn>
+            </zoho.getTheListOfInvoices>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

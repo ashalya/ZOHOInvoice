@@ -1,0 +1,32 @@
+<template name="deleteExistingContact" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!-- Required Parameters -->
+    <parameter name="authToken" description="API key" />
+    <parameter name="contactId"  />
+
+
+
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.contactId" expression="$func:contactId" />
+
+
+
+
+        <call>
+
+            <endpoint>
+
+                <http method="delete"
+                      uri-template="https://invoice.zoho.com/api/v3/contacts/{uri.var.contactId}?authtoken={uri.var.authToken}" />
+
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

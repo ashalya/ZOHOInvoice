@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="zoho_emailTheInvoice"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="REQUEST_HOST_HEADER" value="invoice.zoho.com" scope="axis2"/>
+            <property name="authToken" expression="json-eval($.authToken)"/>
+            <property name="invoiceId" expression="json-eval($.invoiceId)"/>
+            <property name="toMailIds" expression="json-eval($.toMailIds)"/>
+            <property name="subject" expression="json-eval($.subject)"/>
+            <property name="mBody" expression="json-eval($.mBody)"/>
+
+            <zoho.emailTheInvoice>
+                <authToken>{$ctx:authToken}</authToken>
+                <toMailIds>{$ctx:toMailIds}</toMailIds>
+                <invoiceId>{$ctx:invoiceId}</invoiceId>
+                <subject>{$ctx:subject}</subject>
+                <mBody>{$ctx:mBody}</mBody>
+
+            </zoho.emailTheInvoice>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
+</proxy>

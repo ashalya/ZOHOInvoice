@@ -1,0 +1,69 @@
+<template name="updateAnExistingItem" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!-- Required Parameters -->
+    <parameter name="authToken" description="API key" />
+    <parameter name="name"  />
+    <parameter name="description"  />
+    <parameter name="rate"  />
+    <parameter name="taxId"  />
+    <parameter name="itemId"  />
+
+
+
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.name" expression="$func:name" />
+        <property name="uri.var.description" expression="$func:description" />
+        <property name="uri.var.rate" expression="$func:rate" />
+        <property name="uri.var.taxId" expression="$func:taxId" />
+        <property name="uri.var.itemId" expression="$func:itemId" />
+
+
+        <property name="zohoParameters" value=""/>
+
+
+        <filter
+                xpath="get-property('uri.var.description') = '' or  not(string(get-property('uri.var.description')))" >
+            <then>
+                <property name="uri.var.description" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;description&quot;:&quot;', get-property('uri.var.description'),'&quot;')"/>
+            </else>
+        </filter>
+
+
+        <filter
+                xpath="get-property('uri.var.taxId') = '' or  not(string(get-property('uri.var.taxId')))" >
+            <then>
+                <property name="uri.var.taxId" value=""/>
+            </then>
+            <else>
+                <property name="zohoParameters" expression="fn:concat(get-property('zohoParameters'),
+               ',&quot;tax_id&quot;:&quot;', get-property('uri.var.taxId'),'&quot;')"/>
+            </else>
+        </filter>
+
+
+
+        <property name="uri.var.parameters" expression="get-property('zohoParameters')" />
+
+
+
+        <call>
+
+            <endpoint>
+
+                <http method="put"
+                      uri-template="https://invoice.zoho.com/api/v3/items/{uri.var.itemId}?authtoken={uri.var.authToken}&amp;JSONString={&quot;name&quot;:&quot;{uri.var.name}&quot;,&quot;rate&quot;:&quot;{uri.var.rate}&quot;{uri.var.parameters}} "/>
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

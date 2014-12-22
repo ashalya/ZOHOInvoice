@@ -1,0 +1,39 @@
+<template name="emailTheStatement" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!-- Required Parameters -->
+    <parameter name="authToken" description="API key" />
+    <parameter name="contactId"  />
+    <parameter name="toMailIds"  />
+    <parameter name="subject"  />
+    <parameter name="mBody"  />
+
+
+
+    <sequence>
+        <property name="uri.var.authToken" expression="$func:authToken" />
+        <property name="uri.var.contactId" expression="$func:contactId" />
+        <property name="uri.var.toMailIds" expression="$func:toMailIds" />
+        <property name="uri.var.subject" expression="$func:subject" />
+        <property name="uri.var.mBody" expression="$func:mBody" />
+
+
+
+
+
+        <call>
+
+            <endpoint>
+
+                <http method="post"
+                      uri-template="https://invoice.zoho.com/api/v3/contacts/{uri.var.contactId}/statements/email?authtoken={uri.var.authToken}&amp;JSONString={&quot;to_mail_ids&quot;:[&quot;{uri.var.toMailIds}&quot;],&quot;subject&quot;:&quot;{uri.var.subject}&quot;,&quot;body&quot;:&quot;{uri.var.mBody}&quot;}" />
+
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="x-li-format" scope="transport" action="remove" />
+        <header name="X-LI-UUID" scope="transport" action="remove" />
+        <header name="X-Li-Pop" scope="transport" action="remove" />
+        <header name="X-Li-Fabric" scope="transport" action="remove" />
+        <header name="x-li-request-id" scope="transport" action="remove" />
+    </sequence>
+</template>

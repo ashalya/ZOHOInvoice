@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector>
+    <component name="zoho" package="org.wso2.carbon.connector" >
+        <dependency component="Contacts"/>
+        <dependency component="Estimates"/>
+        <dependency component="Invoices"/>
+        <dependency component="Items"/>
+        <dependency component="CreditNotes"/>
+        <dependency component="RecurringInvoices"/>
+        <dependency component="CustomerPayments"/>
+        <dependency component="Expenses"/>
+        <dependency component="authToken"/>
+
+
+    </component>
+</connector>
